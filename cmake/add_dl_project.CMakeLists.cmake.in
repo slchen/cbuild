@@ -1,0 +1,22 @@
+# https://github.com/ajneu/global_mock
+
+cmake_minimum_required(VERSION 3.2)
+
+project(${DL_ARGS_PROJ}-download LANGUAGES NONE)
+
+set(EXTERN_DIR "${CMAKE_BINARY_DIR}/external_proj") ## has to match with variable in add_dl_project.cmake
+
+include(ExternalProject)
+ExternalProject_Add(${DL_ARGS_PROJ}-download
+                    URL               ${DL_ARGS_URL}
+                    URL_HASH          ${DL_ARGS_URL_HASH}
+                    GIT_REPOSITORY    ${DL_ARGS_GIT_REPOSITORY}
+                    GIT_TAG           ${DL_ARGS_GIT_TAG}
+                    PATCH_COMMAND     ${DL_ARGS_PATCH_COMMAND}
+                    SOURCE_DIR        "${EXTERN_DIR}/${DL_ARGS_PROJ}-src"
+                    BINARY_DIR        "${EXTERN_DIR}/${DL_ARGS_PROJ}-build"
+                    CONFIGURE_COMMAND ""
+                    BUILD_COMMAND     ""
+                    INSTALL_COMMAND   ""
+                    TEST_COMMAND      ""
+)
